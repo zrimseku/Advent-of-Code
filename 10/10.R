@@ -4,8 +4,6 @@ alowed_pairs <- c('()', '<>', '[]', '{}')
 price <- list(')'=3, ']'=57, '}'=1197, '>'=25137)
 
 error_score <- 0
-corrupted_lines <- c()
-i <- 0
 for (line in input[,1]) {
   chars <- unlist(strsplit(line, split = ''))
   stack <- c()
@@ -14,8 +12,6 @@ for (line in input[,1]) {
     else if (paste0(tail(stack, 1), char) %in% alowed_pairs) {stack <- stack[1:(length(stack) - 1)]}
     else {
       error_score <- error_score + price[[char]]
-      i <- i + 1
-      corrupted_lines <- c(corrupted_lines, i)
       break
     }
   }
